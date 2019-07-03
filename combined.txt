@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<h1 id="Header">Nutrition Facts</h1>
+</head>
+
+<body>
+	<p>Serving size 2/3 cup</p>
+	<script>
+//get xml from w3, paste into tryit editor
+var parser = new DOMParser();
+	
+function loadDoc(option){
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function(){
+		if(this.readyState == 4 && this.status == 200){
+			iterClick(JSON.parse(this.responseText));
+		}
+	};
+	xhttp.open("GET", "https://www.w3schools.com/js/json_demo.txt", true);
+	xhttp.send();
+}
+
+
+function iterClick(jsonResponse){
+	
+
+	var i;
+	var tbl = document.getElementById("tblBlank");
+	
+	var txt = "";
+	
+	for(i = 0; i< jsonResponse.pets.length; i++){
+		txt += "<tr><td>";
+		txt += jsonResponse.pets[i].animal;
+		//txt += "hi";
+		txt += "</td></tr>";
+	}
+	
+	tbl.innerHTML = txt;
+	
+}
+
+//function makeRow()
+
+
+/*
+{
+    "name":"John",
+    "age":31,
+    "pets":[
+        { "animal":"dog", "name":"Fido" },
+        { "animal":"cat", "name":"Felix" },
+        { "animal":"hamster", "name":"Lightning" }
+    ]
+}
+
+<table id="tblBlank" width="100%">
+			<tr>
+				<th>Name</th>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>John</td>
+			</tr>
+			<tr>
+				<td>age</td>
+				<td>31</td>
+			</tr>
+			<tr>
+				<td>pets</td>
+				<td>John</td>
+			</tr>
+		</table>
+
+
+*/	</script>
+	<button onclick="loadDoc()">Names</button>
+
+	<div id="tbl">
+
+		<table id="tblBlank" width="100%">
+			<tr>
+				<th>Name</th>
+			</tr>
+			<tr>
+				<td>Name here</td>
+			</tr>
+			<tr>
+				<td>Name here</td>
+			</tr>
+			<tr>
+				<td>Name here</td>
+			</tr>
+		</table>
+</body>
+
+</html>

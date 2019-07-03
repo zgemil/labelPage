@@ -1,0 +1,22 @@
+
+"jsonPeople": {
+    people: [{
+            name: "John Deere",
+            id: "123"
+        }, {
+            name: "Jane Doe",
+            id: "456"
+        }, {
+            name: "Jim Smith",
+            id: "789"
+        }
+    ],
+    "countries": [{
+            name: "USA"
+        }, {
+            name: "Ghana"
+        }, {
+            name: "Germany"
+        }
+    ]
+},

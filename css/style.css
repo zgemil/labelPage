@@ -1,0 +1,87 @@
+
+
+ul{
+    list-style: none;
+
+}
+body{
+    font: 15px arial, sans-serif;
+}
+
+li{
+    padding: 2px;
+
+}
+
+li ul li{
+    /* border-bottom: 1px solid black; */
+    border-top: 1px solid black;
+
+}
+
+
+#header{
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+#lstBlank{
+    border: 1px solid black;
+    list-style: none;
+    width: 300px;
+    padding: 10px;
+    
+}
+
+#start{
+    border-bottom: 12px solid black;
+
+}
+
+#calories{
+    font-weight: bold;
+    border-bottom: 6px solid black;
+    border-top: 0px;
+
+}
+
+#nutrientsLimit{
+    border-bottom: 12px solid black;
+}
+
+#nutrientsEnough{
+    border-bottom: 3px solid black;
+}
+
+/* children in limit */
+ul#nutrientsLimit ul .alignleft {
+    font-weight: normal;
+        float: left;
+}
+
+/* all in limit */
+ul#nutrientsLimit .alignleft {
+    font-weight: bold;
+}
+
+/* grams */
+ul#nutrientsLimit .alignleft ~ .alignleft {
+    font-weight: normal;
+    float: left;
+}
+
+
+.alignleft {
+     float: left;
+     margin-right: 2pt;
+}
+           
+
+#nutrientsLimit .alignright {
+    float: right;
+    font-weight: bold;
+}
+
+.alignright {
+	float: right;
+}
