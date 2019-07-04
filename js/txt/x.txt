@@ -1,7 +1,0 @@
-{
-    "people": [
-        {"name": "John Deere"},
-        {"name": "Jane Doe"}, 
-        {"name": "Jim Smith"}
-    ]
-}
