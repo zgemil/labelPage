@@ -7,15 +7,15 @@
 
 <body>
 	<link rel = "stylesheet" type="text/css" href="css/style.css">
+	<script src="js/lib/html2canvas.js">
+	</script>
 	<script src="js/main.js">
 	</script>
 	<script src="js/facts.js">
 	</script>
-	<script src="js/lib/html2canvas.js">
-	</script>
 	<button onclick="loadDoc(jsonsLocal.jsonNutFacts,jsonsLocal.jsonNutNames)">Nutrition</button>
 	<button onclick="loadDoc(jsonsLocal.jsonNutFactsSimp, jsonsLocal.jsonNutNamesSimp)">test</button>
-	<button onclick="alert('Hello')">capture</button>
+	<button onclick="screenshot()">capture</button>
 
 	<div id="lst">
 		<ul id = "lstBlank">
@@ -25,6 +25,7 @@
 		</ul>
 
 	</div>
+	<div id = "pic"></div>
 </body>
 
 </html>

@@ -3,6 +3,14 @@ function loadDoc(info, formatting) {
 	iterClick(info, formatting);
 }
 
+function screenshot() {
+	html2canvas(document.getElementById("lst"),{width: 322}).then(function (canvas) {
+		let placeImage = document.getElementById("pic");
+		placeImage.innerHTML = "<div>Right click the below image and click \"Save image as...\"</div>";
+		placeImage.appendChild(canvas);
+	});
+}
+
 function iterClick(jsonResponse, jsonFormatting) {
 	// console.log(jsonResponse);
 	// console.log(jsonResponse[""]);
@@ -15,7 +23,7 @@ function iterClick(jsonResponse, jsonFormatting) {
 			Newtxt += "<li><ul class = \"section\" id = \"" + section + "\">";
 			if (section == "calories") {
 				Newtxt += "<div>Amount Per Serving</div>";
-			}else if(section=="nutrientsLimit"){
+			} else if (section == "nutrientsLimit") {
 				Newtxt += "<li><div class=\"alignright\">% Daily Value*</div></li>\
 				<div style=\"clear: both;\"></div>";
 			}
@@ -30,6 +38,7 @@ function iterClick(jsonResponse, jsonFormatting) {
 			}
 
 			Newtxt += "</ul></li>";
+			// <div class = \"secBorder\" id = \"" + section + "Divider\"></div>";
 		}
 	}
 	tbl.innerHTML = Newtxt;
@@ -90,7 +99,7 @@ function formatText(jsonObj, name, jsonFormat, section) {
 	}
 	else {
 		var measures = joinJson(jsonObj[name], jsonFormat.units);
-		txt += "<div class=\"alignleft\">"  + name + "</div>";
+		txt += "<div class=\"alignleft\">" + name + "</div>";
 
 		for (unit in measures) {
 			if (unit == "%") {
@@ -99,7 +108,7 @@ function formatText(jsonObj, name, jsonFormat, section) {
 				txt += "</div>";
 
 			} else {
-				txt += "<div class=\"alignleft\">" + measures[unit] + unit +"</div>";
+				txt += "<div class=\"alignleft\">" + measures[unit] + unit + "</div>";
 			}
 		}
 		txt += "<div style=\"clear: both;\"></div>";
