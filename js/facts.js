@@ -1,137 +1,184 @@
 var jsonsLocal =
 {
-    
+
     "jsonNutFactsSimp": {
-        "servingsPerContainer": 8,
-        "servingSize": "2/3 cup (55g)",
-        "fat": {
-            "grams": 8,
-            "percent": 10,
-            "saturated": {
-                "grams": 1,
-                "percent": 5
+        "start": [
+            {
+                "name": "servingsPerContainer",
+                "amount": "8"
             },
-            "trans": {
-                "grams": 0
+            {
+                "name": "servingSize",
+                "amount": "2/3 cup (55g)"
             }
-        }
-        
+
+        ],
+        "nutrientsLimit": [
+            {
+                "name": "fat",
+                "mgrams": 8000,
+                "percent": 10,
+                "subs": [{
+                    "name": "saturated",
+                    "mgrams": 1000,
+                    "percent": 5,
+                    "subs": null
+                },
+                {
+                    "name": "trans",
+                    "mgrams": 0,
+                    "percent": null,
+                    "subs": null
+                }]
+            }
+        ]
     },
 
     "jsonNutNamesSimp": {
         "units": {
-            "grams": "g",
+            "mgrams": "g",
             "mgrams": "mg",
             "mcgrams": "mcg",
             "percent": "%"
         },
-        "start":{
-            "servingsPerContainer": "servings per container",
-            "servingSize": "Serving size",
-            "dummy": "Dummy Option, delete later"
-        },
+        "servingsPerContainer": "servings per container",
+        "servingSize": "Serving size",
+        "dummy": "Dummy Option, delete later",
+        "fat": "Total Fat",
+        "saturated": "Saturated Fat",
+        "trans": "Trans Fat"
 
-        "nutrientsLimit": {
-            "fat": "Total Fat",
-            "saturated": "Saturated Fat",
-            "trans": "Trans Fat"
-        }
-        
     },
 
 
 
 
     "jsonNutFacts": {
-        "servingsPerContainer": 8,
-        "servingSize": "2/3 cup (55g)",
-        "calories": 230,
-        "fat": {
-            "grams": 8,
-            "percent": 10,
-            "saturated": {
-                "grams": 1,
-                "percent": 5
+        "start": [
+            {
+                "name": "servingsPerContainer",
+                "amount": "8"
             },
-            "trans": {
-                "grams": 0
+            {
+                "name": "servingSize",
+                "amount": "2/3 cup (55g)"
             }
-        },
-        "cholesterol": {
-            "grams": 0,
-            "percent": 0
-        },
-        "sodium": {
-            "mgrams": 160,
-            "percent": 7
-        },
-        "carbs": {
-            "grams": 37,
-            "percent": 13,
-            "dietFib": {
-                "grams": 4,
-                "percent": 14
+
+        ],
+        "calories": [
+            {
+                "name": "calories",
+                "amount": 400
+            }
+        ],
+        "nutrientsLimit": [
+            {
+                "name": "fat",
+                "mgrams": 8000,
+                "percent": 10,
+                "subs": [{
+                    "name": "saturated",
+                    "mgrams": 1000,
+                    "percent": 5,
+                    "subs": null
+                },
+                {
+                    "name": "trans",
+                    "mgrams": 0,
+                    "percent": null,
+                    "subs": null
+                }]
             },
-            "sugars": {
-                "grams": 12,
-                "addedSugars": {
-                    "grams": 10,
-                    "percent": 20
-                }
+            {
+                "name": "cholesterol",
+                "mgrams": 0,
+                "percent": 0,
+                "subs": null
+            },
+            {
+                "name": "sodium",
+                "mgrams": 160,
+                "percent": 7,
+                "subs": null
+            },
+            {
+                "name": "carbs",
+                "mgrams": 37000,
+                "percent": 13,
+                "subs": [
+                    {
+                        "name": "dietFib",
+                        "mgrams": 4000,
+                        "percent": 14,
+                        "subs": null
+                    },
+                    {
+                        "name": "sugars",
+                        "mgrams": 12000,
+                        "percent": null,
+                        "subs": [
+                            {
+                                "name": "addedsugars",
+                                "mgrams": 10000,
+                                "percent": 20,
+                                "subs": null
+                            }]
+                    },
+                ]
+            },
+            {
+                "name": "protein",
+                "mgrams": 3000,
+                "percent": null,
+                "subs": null
             }
-        },
-        "protein": {
-            "grams": 3
-        },
-        "vitaminD": {
-            "mcgrams": 2,
-            "percent": 10
-        },
-        "calcium": {
-            "mgrams": 260,
-            "percent": 20
-        },
-        "iron": {
-            "mgrams": 8,
-            "percent": 45
-        },
-        "potassium": {
-            "mgrams": 235,
-            "percent": 6
-        }
+        ],
+        "nutrientsEnough": [
+            {
+                "name": "vitaminD",
+                "mgrams": 0.002,
+                "percent": 10,
+                "subs": null
+            },
+            {
+                "name": "calcium",
+                "mgrams": 260,
+                "percent": 20,
+                "subs": null
+            },
+            {
+                "name": "iron",
+                "mgrams": 8000,
+                "percent": 45,
+                "subs": null
+            },
+            {
+                "name": "potassium",
+                "mgrams": 235000,
+                "percent": 6,
+                "subs": null
+            }
+        ]
     },
 
     "jsonNutNames": {
-        "units": {
-            "grams": "g",
-            "mgrams": "mg",
-            "mcgrams": "mcg",
-            "percent": "%"
-        },
-        "start":{
-            "servingsPerContainer": "servings per container",
-            "servingSize": "Serving size",
-        },
-        "calories": {
-            "calories": "Calories"
-        },
-        "nutrientsLimit": {
-            "fat": "Total Fat",
-            "saturated": "Saturated Fat",
-            "trans": "Trans Fat",
-            "cholesterol": "Cholesterol",
-            "sodium": "Sodium",
-            "carbs": "Total Carbohydrate",
-            "dietFib": "Dietary Fiber",
-            "sugars": "Sugars",
-            "addedSugars": "Added Sugars",
-            "protein": "Protein"
-        },
-        "nutrientsEnough": {
-            "vitaminD": "Vitamin D",
-            "calcium": "Calcium",
-            "iron": "Iron",
-            "potassium": "Potassium"
-        }
+        "servingsPerContainer": "servings per container",
+        "servingSize": "Serving size",
+        "calories": "Calories",
+        "fat": "Total Fat",
+        "saturated": "Saturated Fat",
+        "trans": "Trans Fat",
+        "cholesterol": "Cholesterol",
+        "sodium": "Sodium",
+        "carbs": "Total Carbohydrate",
+        "dietFib": "Dietary Fiber",
+        "sugars": "Sugars",
+        "addedSugars": "Added Sugars",
+        "protein": "Protein",
+        "vitaminD": "Vitamin D",
+        "calcium": "Calcium",
+        "iron": "Iron",
+        "potassium": "Potassium"
+
     }
 };

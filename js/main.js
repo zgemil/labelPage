@@ -4,142 +4,86 @@ function loadDoc(info, formatting) {
 }
 
 function screenshot() {
-	html2canvas(document.getElementById("lst"),{width: 322}).then(function (canvas) {
+	html2canvas(document.getElementById("lst"), { width: 322 }).then(function (canvas) {
 		let placeImage = document.getElementById("pic");
 		placeImage.innerHTML = "<div>Right click the below image and click \"Save image as...\"</div>";
 		placeImage.appendChild(canvas);
 	});
 }
 
-function iterClick(jsonResponse, jsonFormatting) {
-	// console.log(jsonResponse);
-	// console.log(jsonResponse[""]);
+function iterClick(jsonData, jsonFormatting) {
 	var tbl = document.getElementById("lstBlank");
 	var Newtxt = "<li id = \"header\">Nutrition Facts</li>";
 
-	for (section in jsonFormatting) {
-		if (section != "units") {
-			//console.log(section);
-			Newtxt += "<li><ul class = \"section\" id = \"" + section + "\">";
-			if (section == "calories") {
-				Newtxt += "<div>Amount Per Serving</div>";
-			} else if (section == "nutrientsLimit") {
-				Newtxt += "<li><div class=\"alignright\">% Daily Value*</div></li>\
+	for (section in jsonData) {
+		// console.log(jsonData[section]);
+		Newtxt += "<li><ul class = \"section\" id = \"" + section + "\">";
+		if (section == "calories") {
+			Newtxt += "<div>Amount Per Serving</div>";
+		} else if (section == "nutrientsLimit") {
+			Newtxt += "<li><div class=\"alignright\">% Daily Value*</div></li>\
 				<div style=\"clear: both;\"></div>";
-			}
-
-			//line
-			var sectionValues = joinJson(jsonResponse, jsonFormatting[section]);
-
-			// console.log(sectionValues);
-			for (name in sectionValues) {
-				console.log(name);
-				Newtxt += formatList(sectionValues, name, jsonFormatting, section);
-			}
-
-			Newtxt += "</ul></li>";
-			// <div class = \"secBorder\" id = \"" + section + "Divider\"></div>";
 		}
+
+		for (subsection in jsonData[section]) {
+			// console.log(jsonData[section][subsection]);
+			Newtxt += formatLine(jsonData[section][subsection], jsonFormatting, section);
+
+		}
+
+
+
+		Newtxt += "</ul></li>";
 	}
 	tbl.innerHTML = Newtxt;
 
 }
-/*
-formatList: takes json, formats ul and li
 
-
-formatText: takes json line, formats names & units
-
-
-*/
-
-function formatList(jsonObj, name, jsonFormat, section) {
-	// console.log(jsonObj);
-	var txt = "";
-	var subTxt = "";
-
-	txt += "<li>";
-	txt += formatText(jsonObj, name, jsonFormat, section);
-	var subs = joinJson(jsonObj[name], jsonFormat[section]);
-	for (subNames in subs) {
-
-		if (typeof subs[subNames] == "object") {
-			subTxt += formatList(subs, subNames, jsonFormat, section);
-		}
-	}
-	if (subTxt.length > 0) {
-		txt += "<ul>" + subTxt + "</ul>";
-	}
-	if (txt.length > 4) {
-		txt += "</li>";
-		return txt;
-	} else {
-		// console.log("hi");
-		return "";
-	}
-
-}
-
-
-
-function formatText(jsonObj, name, jsonFormat, section) {
-
-	var txt = "";
+function formatLine(jsonData, jsonFormatting, section) {
+	// console.log(section);
+	// console.log(jsonData);
+	var txt = "<li>";
 	if (section == "start") {
-		if (name == "Serving size") {
-			txt += "" + name + " " + jsonObj[name];
+		if (jsonData.name == "servingSize") {
+			txt += "" + jsonData.name + " " + jsonData.amount;
 		} else {
-			txt += "" + jsonObj[name] + " " + name;
+			txt += "" + jsonData.amount + " " + jsonData.name;
 		}
 	}
 	else if (section == "calories") {
-		txt += "<div class=\"alignleft\">" + name + "</div> \
-		<div class=\"alignright\"> " + jsonObj[name] + "</div> \
+		txt += "<div class=\"alignleft\">" +jsonData.name + "</div> \
+		<div class=\"alignright\"> " + jsonData.amount + "</div> \
 		<div style=\"clear: both;\"></div>";
 	}
 	else {
-		var measures = joinJson(jsonObj[name], jsonFormat.units);
-		txt += "<div class=\"alignleft\">" + name + "</div>";
-
-		for (unit in measures) {
-			if (unit == "%") {
-				txt += "<div class=\"alignright\"> ";
-				txt += " " + measures[unit] + unit;
-				txt += "</div>";
-
-			} else {
-				txt += "<div class=\"alignleft\">" + measures[unit] + unit + "</div>";
-			}
+		txt += "<div class=\"alignleft\">" + jsonFormatting[jsonData.name] + printMGrams(jsonData.mgrams) + "</div>";
+		if(jsonData.percent){
+		txt += "<div class=\"alignright\"> " + jsonData.percent + "%</div>";
 		}
 		txt += "<div style=\"clear: both;\"></div>";
 
 	}
-	// console.log(txt);
+	if (jsonData.subs) {
+		txt += "<ul>";
+		for (sub in jsonData.subs) {
+			console.log(sub);
+			txt += formatLine(jsonData.subs[sub], jsonFormatting, section);
+		}
+		txt += "</ul>";
+	}
+	txt += "</li>";
 	return txt;
 }
 
+function printMGrams(mgrams){
+	let txt = "";
+	if(mgrams >= 1000){
+		txt = " " + (mgrams/1000) + "g";
+	} else if(mgrams < 1 && mgrams >0){
+		txt = " " + (mgrams*1000) + "mcg";
+	}else{
+		txt = " " + mgrams + "mg";
+	}
+	return txt;
 
-//joins where key = value, value = jsonvalue
-function joinJson(jsonValue, jsonKey) {
-	var isEmpty = true;
-	// console.log(jsonKey);
-	var jsonTxt = "{";
-	for (key in jsonKey) {
-		for (value in jsonValue) {
-			if (key == value) {
-				isEmpty = false;
-				jsonTxt += "\"" + jsonKey[key] + "\":";
-				jsonTxt += JSON.stringify(jsonValue[key]);
-				jsonTxt += ",";
-			}
-		}
-	}
-	// console.log(jsonTxt);
-	if (isEmpty) {
-		jsonTxt = "{}";
-	} else {
-		jsonTxt = jsonTxt.substring(0, jsonTxt.length - 1) + "}";
-	}
-	// console.log(jsonTxt);
-	return JSON.parse(jsonTxt);
 }
