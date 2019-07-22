@@ -1,6 +1,7 @@
 
 
 ul{
+    padding: 0;
     list-style: none;
 
 }
@@ -52,7 +53,13 @@ li ul li{
 }
 
 /* children in limit */
-ul#nutrientsLimit ul li .alignleft {
+ul#nutrientsLimit ul .alignleft {
+    padding-left: 1em;
+    font-weight: normal;
+}
+/* children of children in limit */
+ul#nutrientsLimit ul ul .alignleft {
+    padding-left: 2em;
     font-weight: normal;
 }
 
@@ -61,13 +68,6 @@ ul#nutrientsLimit .alignleft {
     font-weight: bold;
 }
 
-/* grams */
-ul#nutrientsLimit .alignleft + .alignleft {
-    font-weight: normal;
-    float: left;
-}
-
-
 .alignleft {
      float: left;
      margin-right: 2pt;
@@ -75,7 +75,6 @@ ul#nutrientsLimit .alignleft + .alignleft {
            
 
 #nutrientsLimit .alignright {
-    float: right;
     font-weight: bold;
 }
 
