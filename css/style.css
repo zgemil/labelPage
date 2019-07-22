@@ -11,12 +11,10 @@ body{
 
 li{
     padding: 2px;
-
 }
 
 li ul li{
     border-top: 1px solid black;
-
 }
 
 

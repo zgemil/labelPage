@@ -4,7 +4,7 @@ function loadDoc(info, formatting) {
 }
 
 function screenshot() {
-	html2canvas(document.getElementById("lst"), { width: 322 }).then(function (canvas) {
+	html2canvas(document.getElementById("lst"), { width: 292 }).then(function (canvas) {
 		let placeImage = document.getElementById("pic");
 		placeImage.innerHTML = "<div>Right click the below image and click 'Save image as...'</div>";
 		placeImage.appendChild(canvas);
