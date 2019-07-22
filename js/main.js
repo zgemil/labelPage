@@ -76,7 +76,7 @@ function formatLine(jsonData, jsonFormatting, section) {
 }
 
 function printMGrams(mgrams){
-	let txt = "<div class='alignleft'>";
+	let txt = "<span>";
 	if(mgrams >= 1000){
 		txt += " " + (mgrams/1000) + "g";
 	} else if(mgrams < 1 && mgrams >0){
@@ -84,7 +84,7 @@ function printMGrams(mgrams){
 	}else{
 		txt += " " + mgrams + "mg";
 	}
-	txt += "</div>";
+	txt += "</span>";
 	return txt;
 
 }
