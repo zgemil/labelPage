@@ -6,23 +6,23 @@ function loadDoc(info, formatting) {
 function screenshot() {
 	html2canvas(document.getElementById("lst"), { width: 322 }).then(function (canvas) {
 		let placeImage = document.getElementById("pic");
-		placeImage.innerHTML = "<div>Right click the below image and click \"Save image as...\"</div>";
+		placeImage.innerHTML = "<div>Right click the below image and click 'Save image as...'</div>";
 		placeImage.appendChild(canvas);
 	});
 }
 
 function iterClick(jsonData, jsonFormatting) {
 	var tbl = document.getElementById("lstBlank");
-	var Newtxt = "<li id = \"header\">Nutrition Facts</li>";
+	var Newtxt = "<li id = 'header'>Nutrition Facts</li>";
 
 	for (section in jsonData) {
 		// console.log(jsonData[section]);
-		Newtxt += "<li><ul class = \"section\" id = \"" + section + "\">";
+		Newtxt += "<li><ul class = 'section' id = '" + section + "'>";
 		if (section == "calories") {
 			Newtxt += "<div>Amount Per Serving</div>";
 		} else if (section == "nutrientsLimit") {
-			Newtxt += "<li><div class=\"alignright\">% Daily Value*</div></li>\
-				<div style=\"clear: both;\"></div>";
+			Newtxt += "<li><div class='alignright'>% Daily Value*</div></li>\
+				<div style='clear: both;'></div>";
 		}
 
 		for (subsection in jsonData[section]) {
@@ -51,16 +51,16 @@ function formatLine(jsonData, jsonFormatting, section) {
 		}
 	}
 	else if (section == "calories") {
-		txt += "<div class=\"alignleft\">" +jsonData.name + "</div> \
-		<div class=\"alignright\"> " + jsonData.amount + "</div> \
-		<div style=\"clear: both;\"></div>";
+		txt += "<div class='alignleft'>" +jsonData.name + "</div> \
+		<div class='alignright'> " + jsonData.amount + "</div> \
+		<div style='clear: both;'></div>";
 	}
 	else {
-		txt += "<div class=\"alignleft\">" + jsonFormatting[jsonData.name] + printMGrams(jsonData.mgrams) + "</div>";
+		txt += "<div class='alignleft'>" + jsonFormatting[jsonData.name]  + "</div>"+ printMGrams(jsonData.mgrams) ;
 		if(jsonData.percent){
-		txt += "<div class=\"alignright\"> " + jsonData.percent + "%</div>";
+		txt += "<div class='alignright'> " + jsonData.percent + "%</div>";
 		}
-		txt += "<div style=\"clear: both;\"></div>";
+		txt += "<div style='clear: both;'></div>";
 
 	}
 	if (jsonData.subs) {
@@ -76,14 +76,15 @@ function formatLine(jsonData, jsonFormatting, section) {
 }
 
 function printMGrams(mgrams){
-	let txt = "";
+	let txt = "<div class='alignleft'>";
 	if(mgrams >= 1000){
-		txt = " " + (mgrams/1000) + "g";
+		txt += " " + (mgrams/1000) + "g";
 	} else if(mgrams < 1 && mgrams >0){
-		txt = " " + (mgrams*1000) + "mcg";
+		txt += " " + (mgrams*1000) + "mcg";
 	}else{
-		txt = " " + mgrams + "mg";
+		txt += " " + mgrams + "mg";
 	}
+	txt += "</div>";
 	return txt;
 
 }

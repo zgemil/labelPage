@@ -14,7 +14,6 @@ li{
 }
 
 li ul li{
-    /* border-bottom: 1px solid black; */
     border-top: 1px solid black;
 
 }
@@ -32,11 +31,6 @@ li ul li{
     padding: 10px;
     
 }
-
-/* .secBorder{
-    height: 12px;
-    background-color: black;
-} */
 
 #start{
     border-top: 1px solid black;
@@ -58,9 +52,8 @@ li ul li{
 }
 
 /* children in limit */
-ul#nutrientsLimit ul .alignleft {
+ul#nutrientsLimit ul li .alignleft {
     font-weight: normal;
-        float: left;
 }
 
 /* all in limit */
@@ -69,7 +62,7 @@ ul#nutrientsLimit .alignleft {
 }
 
 /* grams */
-ul#nutrientsLimit .alignleft ~ .alignleft {
+ul#nutrientsLimit .alignleft + .alignleft {
     font-weight: normal;
     float: left;
 }

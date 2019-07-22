@@ -118,7 +118,7 @@ var jsonsLocal =
                         "percent": null,
                         "subs": [
                             {
-                                "name": "addedsugars",
+                                "name": "addedSugars",
                                 "mgrams": 10000,
                                 "percent": 20,
                                 "subs": null
